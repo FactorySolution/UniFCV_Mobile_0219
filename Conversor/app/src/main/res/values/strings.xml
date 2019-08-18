@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Conversor</string>
+
+    <string name="digite_o_valor">Digite o valor</string>
+    <string name="resultado">Resultado</string>
+    <string name="calcular">Calcular</string>
+</resources>
