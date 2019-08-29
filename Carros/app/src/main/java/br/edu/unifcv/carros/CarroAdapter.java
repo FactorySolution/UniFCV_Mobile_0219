@@ -7,7 +7,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 public class CarroAdapter extends RecyclerView.Adapter<CarroViewHolder> {
+
+    private List<CarroModel> mCarros;
+    private onClickViewListener mOnClickViewListener;
+
+
+    public CarroAdapter(List<CarroModel> mCarros, onClickViewListener onClickViewListener) {
+        this.mCarros = mCarros;
+        this.mOnClickViewListener = onClickViewListener;
+    }
 
     @NonNull
     @Override
@@ -20,11 +31,11 @@ public class CarroAdapter extends RecyclerView.Adapter<CarroViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CarroViewHolder carroViewHolder, int i) {
-
+        carroViewHolder.bindData(this.mCarros.get(i), mOnClickViewListener);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mCarros.size();
     }
 }

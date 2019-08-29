@@ -1,13 +1,18 @@
 package br.edu.unifcv.carros;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView lista;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,12 +21,24 @@ public class MainActivity extends AppCompatActivity {
 
         lista = findViewById(R.id.lista);
 
-        CarroAdapter carroAdapter = new CarroAdapter();
+        CarroMock mock = new CarroMock();
+
+        List<CarroModel> mCarros = mock.getCarrosList();
+
+        this.mContext = this;
+
+        onClickViewListener onClickViewListener = new onClickViewListener() {
+            @Override
+            public void click(int id) {
+                Toast.makeText(mContext, String.valueOf(id), Toast.LENGTH_LONG).show();;
+            }
+        };
+
+        CarroAdapter carroAdapter = new CarroAdapter(mCarros, onClickViewListener);
         lista.setAdapter(carroAdapter);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         lista.setLayoutManager(linearLayoutManager);
-
 
     }
 }
