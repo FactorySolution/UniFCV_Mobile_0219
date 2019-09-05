@@ -1,6 +1,7 @@
 package br.edu.unifcv.carros;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -30,7 +31,9 @@ public class MainActivity extends AppCompatActivity {
         onClickViewListener onClickViewListener = new onClickViewListener() {
             @Override
             public void click(int id) {
-                Toast.makeText(mContext, String.valueOf(id), Toast.LENGTH_LONG).show();;
+                Intent i = new Intent(mContext, DetalheCarrosActivity.class);
+                startActivity(i);
+
             }
         };
 

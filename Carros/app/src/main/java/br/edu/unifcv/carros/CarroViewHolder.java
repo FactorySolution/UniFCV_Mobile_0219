@@ -7,17 +7,19 @@ import android.widget.TextView;
 
 public class CarroViewHolder extends RecyclerView.ViewHolder {
 
-    TextView mTeste;
+    TextView mTxtModelo;
+    TextView mTxtDetalhe;
 
     public CarroViewHolder(@NonNull View itemView) {
         super(itemView);
-        mTeste = itemView.findViewById(R.id.txt_teste);
+        this.mTxtModelo = itemView.findViewById(R.id.txtModelo);
+        this.mTxtDetalhe = itemView.findViewById(R.id.txtDetalhe);
     }
 
     public void bindData(final CarroModel carroModel, final onClickViewListener mOnClickViewListener) {
-        this.mTeste.setText(carroModel.getModelo());
+        this.mTxtModelo.setText(carroModel.getModelo());
 
-        this.mTeste.setOnClickListener(new View.OnClickListener() {
+        this.mTxtDetalhe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mOnClickViewListener.click(carroModel.getId());
