@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Carros</string>
+    <string name="valor">Valor</string>
+    <string name="potencia">Potência</string>
+    <string name="fabricante">Fabricante</string>
+    <string name="modelo">Modelo</string>
 </resources>

@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         lista = findViewById(R.id.lista);
 
-        CarroMock mock = new CarroMock();
+        CarroMock mock = new CarroMock(this);
 
         List<CarroModel> mCarros = mock.getCarrosList();
 
@@ -31,7 +31,10 @@ public class MainActivity extends AppCompatActivity {
         onClickViewListener onClickViewListener = new onClickViewListener() {
             @Override
             public void click(int id) {
+                Bundle bundle = new Bundle();
+                bundle.putInt(CarroConstants.CARRO_ID, id);
                 Intent i = new Intent(mContext, DetalheCarrosActivity.class);
+                i.putExtras(bundle);
                 startActivity(i);
 
             }
