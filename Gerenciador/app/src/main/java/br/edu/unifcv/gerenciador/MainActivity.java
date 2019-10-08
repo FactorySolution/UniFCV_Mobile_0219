@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        Teste teste = Teste.getInstance(this);
-        teste.testar();
+        //Teste teste = Teste.getInstance(this);
+        //teste.testar();
     }
 
     @Override
