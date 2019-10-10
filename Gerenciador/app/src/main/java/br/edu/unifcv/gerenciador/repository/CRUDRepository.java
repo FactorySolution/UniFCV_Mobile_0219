@@ -8,5 +8,7 @@ public interface CRUDRepository<T> {
 
     T getByID(int ID);
 
+    void save(T object);
+
 
 }
