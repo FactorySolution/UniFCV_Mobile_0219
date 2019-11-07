@@ -10,5 +10,9 @@ public interface CRUDRepository<T> {
 
     void save(T object);
 
+    Boolean update(T object);
+
+    void delete(int id);
+
 
 }

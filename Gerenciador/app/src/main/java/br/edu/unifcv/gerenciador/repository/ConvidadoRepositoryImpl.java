@@ -4,9 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.ContactsContract;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import br.edu.unifcv.gerenciador.constants.DataBaseConstants;
 import br.edu.unifcv.gerenciador.model.Convidado;
@@ -49,7 +51,7 @@ public class ConvidadoRepositoryImpl implements CRUDRepository<Convidado> {
                     DataBaseConstants.CONVIDADO.COLUMNS.PRESENCE
             };
 
-            String where = DataBaseConstants.CONVIDADO.COLUMNS.ID  + " = ?";
+            String where = DataBaseConstants.CONVIDADO.COLUMNS.ID + " = ?";
 
             String args[] = {String.valueOf(ID)};
 
@@ -86,7 +88,7 @@ public class ConvidadoRepositoryImpl implements CRUDRepository<Convidado> {
 
     @Override
     public void save(Convidado convidado) {
-       // insert into convidado (nome, presenca)
+        // insert into convidado (nome, presenca)
         // values (convidado.getNome, convidado.getPresenca)
         try {
             SQLiteDatabase database = this.databaseHelper.getWritableDatabase();
@@ -97,10 +99,44 @@ public class ConvidadoRepositoryImpl implements CRUDRepository<Convidado> {
             values.put(
                     DataBaseConstants.CONVIDADO.COLUMNS.PRESENCE, convidado.getPresenca());
             long a = database.insert(
-                       DataBaseConstants.CONVIDADO.TABLE_NAME, null, values );
+                    DataBaseConstants.CONVIDADO.TABLE_NAME, null, values);
         } catch (Exception e) {
-
+            
         }
+    }
+
+    @Override
+    public Boolean update(Convidado convidado) {
+        try {
+            // update convidados set aaa=aaa where id=1
+            SQLiteDatabase database = this.databaseHelper.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(
+                    DataBaseConstants.CONVIDADO.COLUMNS.NAME, convidado.getNome());
+            values.put(
+                    DataBaseConstants.CONVIDADO.COLUMNS.PRESENCE, convidado.getPresenca());
+            String where  = DataBaseConstants.CONVIDADO.COLUMNS.ID  + "=?";
+            String[] whereArgs = new String[]{String.valueOf(convidado.getID())};
+            database.update(DataBaseConstants.CONVIDADO.TABLE_NAME, values, where, whereArgs );
+
+
+            return true;
+        } catch( Exception e) {
+            return false;
+        }
+
+    }
+
+    @Override
+    public void delete(int id) {
+        // delete from convidados where id=1
+        SQLiteDatabase database = this.databaseHelper.getWritableDatabase();
+
+        String where = "id=?";
+        String[] whereArgs = new String[]{String.valueOf(id)};
+
+        database.delete(DataBaseConstants.CONVIDADO.TABLE_NAME, where, whereArgs);
+
     }
 
 }
